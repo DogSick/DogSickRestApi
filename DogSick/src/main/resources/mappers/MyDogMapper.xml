@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dogpamines.dogsick.model.dao.MyDogMapper">
+    <resultMap id="myDogMemo" type="com.dogpamines.dogsick.model.dto.MyDogDTO">
+        <id property="myDogCode" column="MYDOG_CODE"/>
+        <result property="myDogDate" column="MYDOG_DATE"/>
+        <result property="myDogLocation" column="MYDOG_LOCATION"/>
+        <result property="myDogMemo" column="MYDOG_MEMO"/>
+    </resultMap>
+
+    <select id="selectAllList" resultMap="myDogMemo">
+        SELECT
+            MYDOG_CODE
+            , MYDOG_DATE
+            , MYDOG_LOCATION
+            , MYDOG_MEMO
+        FROM MYDOGDB
+        ORDER BY MYDOG_DATE DESC
+    </select>
+
+    <select id="selectByCode" parameterType="_int" resultMap="myDogMemo">
+        SELECT
+            MYDOG_CODE
+            , MYDOG_DATE
+            , MYDOG_LOCATION
+            , MYDOG_MEMO
+        FROM MYDOGDB
+        WHERE MYDOG_CODE = #{ myDogCode }
+    </select>
+
+    <select id="getLastCode" resultType="_int">
+        SELECT
+            MAX(MYDOG_CODE)
+        FROM MYDOGDB
+    </select>
+
+    <insert id="insert" parameterType="com.dogpamines.dogsick.model.dto.MyDogDTO">
+        INSERT INTO MYDOGDB(
+            MYDOG_CODE
+            , MYDOG_DATE
+            , MYDOG_LOCATION
+            , MYDOG_MEMO)
+        VALUES(
+            #{ myDogCode }
+            , #{ myDogDate }
+            , #{ myDogLocation }
+            , #{ myDogMemo })
+    </insert>
+</mapper>
