@@ -14,4 +14,6 @@ public interface MyDogMapper {
     int getLastCode();
 
     void insert(MyDogDTO myDogDTO);
+
+    void delete(int myDogCode);
 }

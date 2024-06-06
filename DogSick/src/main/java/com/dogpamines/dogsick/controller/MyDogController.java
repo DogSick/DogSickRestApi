@@ -62,4 +62,12 @@ public class MyDogController {
                 .created(URI.create("/" + newMemoCode))
                 .build();
     }
+
+    @DeleteMapping("/mydog/{myDogCode}")
+    public ResponseEntity<?> deleteMemo(@PathVariable int myDogCode) {
+
+        myDogService.delete(myDogCode);
+
+        return ResponseEntity.noContent().build();
+    }
 }

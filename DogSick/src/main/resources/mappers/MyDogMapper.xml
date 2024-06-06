@@ -48,4 +48,9 @@
             , #{ myDogLocation }
             , #{ myDogMemo })
     </insert>
+
+    <delete id="delete" parameterType="_int">
+        DELETE FROM MYDOGDB
+        WHERE MYDOG_CODE = #{ myDogCode }
+    </delete>
 </mapper>

@@ -14,3 +14,6 @@ Content-Type: application/json
   "myDogLocation": "_myDogLocation!.value.text",
   "myDogMemo": "_myDogMemo!.value.text"
 }
+
+### 삭제
+DELETE http://localhost:8080/mydog/2

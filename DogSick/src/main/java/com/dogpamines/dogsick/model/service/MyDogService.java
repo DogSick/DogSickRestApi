@@ -32,4 +32,8 @@ public class MyDogService {
     public void insert(MyDogDTO myDogDTO) {
         myDogMapper.insert(myDogDTO);
     }
+
+    public void delete(int myDogCode) {
+        myDogMapper.delete(myDogCode);
+    }
 }
