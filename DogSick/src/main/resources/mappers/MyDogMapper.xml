@@ -8,15 +8,18 @@
         <result property="myDogDate" column="MYDOG_DATE"/>
         <result property="myDogLocation" column="MYDOG_LOCATION"/>
         <result property="myDogMemo" column="MYDOG_MEMO"/>
+        <result property="myDogId" column="MYDOG_ID"/>
     </resultMap>
 
-    <select id="selectAllList" resultMap="myDogMemo">
+    <select id="selectAllList" parameterType="String" resultMap="myDogMemo">
         SELECT
             MYDOG_CODE
             , MYDOG_DATE
             , MYDOG_LOCATION
             , MYDOG_MEMO
+            , MYDOG_ID
         FROM MYDOGDB
+        WHERE MYDOG_ID = #{ id }
         ORDER BY MYDOG_DATE DESC
     </select>
 
@@ -26,6 +29,7 @@
             , MYDOG_DATE
             , MYDOG_LOCATION
             , MYDOG_MEMO
+            , MYDOG_ID
         FROM MYDOGDB
         WHERE MYDOG_CODE = #{ myDogCode }
     </select>
@@ -41,11 +45,18 @@
             MYDOG_CODE
             , MYDOG_DATE
             , MYDOG_LOCATION
-            , MYDOG_MEMO)
+            , MYDOG_MEMO
+            , MYDOG_ID)
         VALUES(
             #{ myDogCode }
             , #{ myDogDate }
             , #{ myDogLocation }
-            , #{ myDogMemo })
+            , #{ myDogMemo }
+            , #{ myDogId })
     </insert>
+
+    <delete id="delete" parameterType="_int">
+        DELETE FROM MYDOGDB
+        WHERE MYDOG_CODE = #{ myDogCode }
+    </delete>
 </mapper>

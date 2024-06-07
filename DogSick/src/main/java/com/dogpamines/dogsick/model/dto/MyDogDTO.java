@@ -8,14 +8,16 @@ public class MyDogDTO {
     private Date myDogDate;
     private String myDogLocation;
     private String myDogMemo;
+    private String myDogId;
 
     public MyDogDTO() {}
 
-    public MyDogDTO(int myDogCode, Date myDogDate, String myDogLocation, String myDogMemo) {
+    public MyDogDTO(int myDogCode, Date myDogDate, String myDogLocation, String myDogMemo, String myDogId) {
         this.myDogCode = myDogCode;
         this.myDogDate = myDogDate;
         this.myDogLocation = myDogLocation;
         this.myDogMemo = myDogMemo;
+        this.myDogId = myDogId;
     }
 
     public int getMyDogCode() {
@@ -50,6 +52,14 @@ public class MyDogDTO {
         this.myDogMemo = myDogMemo;
     }
 
+    public String getMyDogId() {
+        return myDogId;
+    }
+
+    public void setMyDogId(String myDogId) {
+        this.myDogId = myDogId;
+    }
+
     @Override
     public String toString() {
         return "MyDogDTO{" +
@@ -57,6 +67,7 @@ public class MyDogDTO {
                 ", myDogDate=" + myDogDate +
                 ", myDogLocation='" + myDogLocation + '\'' +
                 ", myDogMemo='" + myDogMemo + '\'' +
+                ", myDogId='" + myDogId + '\'' +
                 '}';
     }
 }

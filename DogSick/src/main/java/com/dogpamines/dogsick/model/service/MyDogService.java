@@ -17,8 +17,8 @@ public class MyDogService {
         this.myDogMapper = myDogMapper;
     }
 
-    public List<MyDogDTO> selectAllList() {
-        return myDogMapper.selectAllList();
+    public List<MyDogDTO> selectAllList(String id) {
+        return myDogMapper.selectAllList(id);
     }
 
     public Object selectByCode(int myDogCode) {
@@ -31,5 +31,9 @@ public class MyDogService {
 
     public void insert(MyDogDTO myDogDTO) {
         myDogMapper.insert(myDogDTO);
+    }
+
+    public void delete(int myDogCode) {
+        myDogMapper.delete(myDogCode);
     }
 }

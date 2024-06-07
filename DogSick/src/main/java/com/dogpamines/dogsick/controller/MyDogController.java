@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class MyDogController {
@@ -25,14 +24,31 @@ public class MyDogController {
     }
 
     @GetMapping("/mydog")
-    public ResponseEntity<Map<String, Object>> selectAllList() {
+    public ResponseEntity<Map<String, Object>> selectAllList(@RequestHeader Map<String, String> reqHeader) {
+
+        System.out.println("reqHeader = " + reqHeader);
+        String id = reqHeader.get("identifier");
+
+        List<MyDogDTO> list = myDogService.selectAllList(id);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-        headers.set("test", "test");
 
         Map<String, Object> result = new HashMap<>();
-        result.put("list", myDogService.selectAllList());
+
+
+        if (list.size() != 0) {
+            result.put("list", list);
+        } else {
+            Date date = new Date();
+            int random = (int) (Math.random() * 100);
+            String newId = String.valueOf(date.getYear()) + random + String.valueOf(date.getMonth()) + String.valueOf(date.getDate()) + random;
+            List<MyDogDTO> welcome = new ArrayList<>();
+            welcome.add(new MyDogDTO(0, new java.sql.Date(date.getTime()), "환영합니다", "새로운 내용을 입력하세요", ""));
+            result.put("list", welcome);
+
+            headers.set("identifier", newId);
+        }
 
         return new ResponseEntity<>(result, headers, HttpStatus.OK);
     }
@@ -61,5 +77,13 @@ public class MyDogController {
         return ResponseEntity
                 .created(URI.create("/" + newMemoCode))
                 .build();
+    }
+
+    @DeleteMapping("/mydog/{myDogCode}")
+    public ResponseEntity<?> deleteMemo(@PathVariable int myDogCode) {
+
+        myDogService.delete(myDogCode);
+
+        return ResponseEntity.noContent().build();
     }
 }

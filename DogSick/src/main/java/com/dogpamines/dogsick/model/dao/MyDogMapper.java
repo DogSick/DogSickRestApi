@@ -7,11 +7,13 @@ import java.util.List;
 
 @Mapper
 public interface MyDogMapper {
-    List<MyDogDTO> selectAllList();
+    List<MyDogDTO> selectAllList(String id);
 
     MyDogDTO selectByCode(int myDogCode);
 
     int getLastCode();
 
     void insert(MyDogDTO myDogDTO);
+
+    void delete(int myDogCode);
 }

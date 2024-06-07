@@ -2,7 +2,7 @@
 GET http://localhost:8080/mydog
 
 ### 개별 조회
-GET http://localhost:8080/mydog/3
+GET http://localhost:8080/mydog/1
 
 ### 입력
 POST http://localhost:8080/mydog
@@ -12,5 +12,9 @@ Content-Type: application/json
   "myDogCode": 0,
   "myDogDate": "2024-06-05",
   "myDogLocation": "_myDogLocation!.value.text",
-  "myDogMemo": "_myDogMemo!.value.text"
+  "myDogMemo": "_myDogMemo!.value.text",
+  "myDogId": "123456789"
 }
+
+### 삭제
+DELETE http://localhost:8080/mydog/2
