@@ -26,7 +26,7 @@ public class MyDogController {
     @GetMapping("/mydog")
     public ResponseEntity<Map<String, Object>> selectAllList(@RequestHeader Map<String, String> reqHeader) {
 
-        System.out.println("reqHeader = " + reqHeader);
+//        System.out.println("reqHeader = " + reqHeader);
         String id = reqHeader.get("identifier");
 
         List<MyDogDTO> list = myDogService.selectAllList(id);
